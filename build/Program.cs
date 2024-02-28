@@ -79,6 +79,7 @@ public sealed class BuildTask : FrostingTask<BuildContext>
         context.DeleteFiles(publishOutput + "/System.*.dll");
         
         context.CopyDirectory(publishOutput, depsOutput);
+        context.CreateDirectory(netVersionPath.Combine("./mods"));
         
         context.CopyFiles(netVersionPath + "/" + context.TargetProject + ".dll", patchersPath);
         context.CopyFiles(netVersionPath + "/*.txt", patchersPath);
