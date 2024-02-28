@@ -7,7 +7,7 @@ This allows mod developers to create `NET Standard 2.1` or `NET Framework 4.7.1`
 
 
 ## Installation
-Download the latest release's `Shapez2AppDataExtract.zip` and extract it into the `/tobspr Games/shapez 2/` folder located whever Unity's [Application.persistentDataPath](https://docs.unity3d.com/ScriptReference/Application-persistentDataPath.html) would put the game's application data. On Windows this is `(...)/AppData/LocalLow/`.
+Download the latest release's `Shapez2AppDataExtract.zip` and extract it into the `/tobspr Games/shapez 2/` folder located wherever Unity's [Application.persistentDataPath](https://docs.unity3d.com/ScriptReference/Application-persistentDataPath.html) would put the game's application data. On Windows this is `(...)/AppData/LocalLow/`.
 
 Note: The `/tobspr Games/shapez 2/` directory contains a few sub-directories, notably `blueprints`, `savegames`, and a file `Player.log`; However, until you extract the directories `mods` and `patchers` from your zip, and therefore making **both 'mods' and 'patchers' exist**, the ModLoader won't run Mods or Patchers. The fact that both directories must be present is why there is an empty `mods` folder included in the `Shapez2AppDataExtract.zip`.
 
