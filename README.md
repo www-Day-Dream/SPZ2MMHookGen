@@ -31,7 +31,6 @@ public class Mod : IMod
 
         On.Preloader.MoveToNextState += (orig, self) =>
         {
-            Debug.LogError(self.StateIndex);
             self.StateIndex = self.StatePrefabs.Length + 1;
             orig(self);
         };
