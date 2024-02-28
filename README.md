@@ -21,7 +21,7 @@ Once you've got a project setup and references to the generated dlls (and the ba
 
 The below pseudo-code (You should reference Unity stuff too ofc) should skip the starting scenes as a way to test your process:
 
-**Note**: The way you bind to events `On.X.Y.Z +=` shown below is how you use HookGen. But the patch might not work w/ your version of SPZ2.
+**Note**: The way you bind to events `On.X.Y.Z +=` shown below is how you use HookGen to hook the type 'Preloader' that is not namespaced in one of the DLLs. But the patch might not work w/ your version of SPZ2.
 ```csharp
 public class Mod : IMod
 {
