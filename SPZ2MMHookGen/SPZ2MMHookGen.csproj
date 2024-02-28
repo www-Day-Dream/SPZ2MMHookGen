@@ -1,0 +1,40 @@
+<Project Sdk="Microsoft.NET.Sdk">
+    <PropertyGroup>
+        <TargetFramework>net471</TargetFramework>
+        <DebugSymbols>False</DebugSymbols>
+        <DebugType>None</DebugType>
+    </PropertyGroup>
+    
+    <ItemGroup>
+        <PackageReference Include="MonoMod.Utils" Version="22.5.1.1">
+            <IncludeAssets>all;</IncludeAssets>
+            <Publish>true</Publish>
+        </PackageReference>
+        <PackageReference Include="MonoMod.RuntimeDetour" Version="22.5.1.1">
+            <IncludeAssets>all;</IncludeAssets>
+            <Publish>true</Publish> 
+        </PackageReference>
+        <PackageReference Include="MonoMod.RuntimeDetour.HookGen" Version="22.5.1.1" >
+            <IncludeAssets>all;</IncludeAssets>
+            <Publish>true</Publish>
+        </PackageReference>
+        
+        <Reference Include="SPZGameAssembly">
+            <HintPath>$(GameDir)\shapez 2_Data\Managed\SPZGameAssembly.dll</HintPath>
+            <Private>False</Private>
+        </Reference>
+    </ItemGroup>
+    
+    <ItemGroup>
+      <Content Include="..\Mono.Cecil.LICENSE.txt" CopyToOutputDirectory="Always">
+        <Link>Mono.Cecil.LICENSE.txt</Link>
+      </Content>
+      <Content Include="..\MonoMod.LICENSE.txt" CopyToOutputDirectory="Always">
+        <Link>MonoMod.LICENSE.txt</Link>
+      </Content>
+    </ItemGroup>
+    
+    <Target Name="PostBuild" AfterTargets="PostBuildEvent">
+        <Delete Files="$(OutDir)\*.deps.json" />
+    </Target>
+</Project>
