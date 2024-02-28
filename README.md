@@ -29,8 +29,6 @@ public class Mod : IMod
     {
         Debug.Log("Hello World from my custom Mod using HookGen!");
 
-        // While this is tested to work with Alpha 16.1 ...
-        // No promises
         On.Preloader.MoveToNextState += (orig, self) =>
         {
             Debug.LogError(self.StateIndex);
