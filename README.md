@@ -3,7 +3,7 @@
 
 Implements the `MonoMod.RuntimeDetour.HookGen` as a Shapez 2 built-in `IPatcher`.
 
-This allows mod developers to create `Net Standard 2.1` or `Net Framework 4.7.1` libraries with a class that implements Shapez 2's `IMod` and perform event based hooks into Shapez 2's `SPZGameAssembly.dll` & `Core.dll`.
+This allows mod developers to create `NET Standard 2.1` or `NET Framework 4.7.1` libraries with a class that implements Shapez 2's `IMod` and perform event based hooks into Shapez 2's `SPZGameAssembly.dll` & `Core.dll`.
 
 
 ## Installation
