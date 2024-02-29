@@ -13,7 +13,7 @@ Note: The `/tobspr Games/shapez 2/` directory contains a few sub-directories, no
 
 #### Run the game!
 ---
-After you've run the game, with both of the aforementioned directories present, two files should appear under the folder `/tobspr Games/shapez 2/patchers/generated_deps/` whose filenames are prefixed with `MMHook.`
+After you've run the game, with both of the aforementioned directories present, two files should appear in the game's managed directory `(Where 'shapez 2.exe' is located)/shapez 2_data/Managed`, next to the originals, whose filenames are prefixed with `MMHook.`
 
 #### Create your project and reference the generated dlls.
 ---

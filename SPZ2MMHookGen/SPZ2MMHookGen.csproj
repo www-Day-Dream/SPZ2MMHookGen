@@ -1,5 +1,6 @@
 <Project Sdk="Microsoft.NET.Sdk">
     <PropertyGroup>
+        <AssemblyVersion>0.1.1</AssemblyVersion>
         <TargetFramework>net471</TargetFramework>
         <DebugSymbols>False</DebugSymbols>
         <DebugType>None</DebugType>

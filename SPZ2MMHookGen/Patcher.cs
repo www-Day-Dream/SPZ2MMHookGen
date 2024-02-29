@@ -13,7 +13,7 @@ namespace SPZ2MMHookGen
         private int NumberOfDependencies { get; set; }
         private int NumberResolved { get; set; }
         private string DynamicDepsPath { get; set; }
-        private string HookGenPath { get; set; }
+        private string SPZ2Path { get; set; }
 
         private string[] AssembliesToGen { get; } = new string[] {
             "SPZGameAssembly.dll", "Core.dll"
@@ -21,21 +21,18 @@ namespace SPZ2MMHookGen
         
         public void Patch()
         {
-            var spz2PersistentDir = Environment.GetEnvironmentVariable("SPZ2_PERSISTENT");
+            SPZ2Path = Environment.GetEnvironmentVariable("SPZ2_PERSISTENT");
             var spz2ManagedDir = Environment.GetEnvironmentVariable("SPZ2_PATH");
             
-            if (spz2PersistentDir == null || spz2ManagedDir == null)
+            if (SPZ2Path == null || spz2ManagedDir == null)
                 throw new ArgumentNullException();
 
             Environment.SetEnvironmentVariable("MONOMOD_HOOKGEN_PRIVATE", "1");
             Environment.SetEnvironmentVariable("MONOMOD_DEPENDENCY_MISSING_THROW", "0");
 
-            DynamicDepsPath = Path.Combine(Path.Combine(spz2PersistentDir,
+            DynamicDepsPath = Path.Combine(Path.Combine(SPZ2Path,
                 GameEnvironmentManager.PATCHERS_PATH), "dynamic_deps");
-            HookGenPath = Path.Combine(Path.Combine(spz2PersistentDir, GameEnvironmentManager.PATCHERS_PATH),
-                "generated_deps");
             if (!Directory.Exists(DynamicDepsPath)) Directory.CreateDirectory(DynamicDepsPath);
-            if (!Directory.Exists(HookGenPath)) Directory.CreateDirectory(HookGenPath);
             
             NumberOfDependencies = Directory.GetFiles(DynamicDepsPath, "*.dll").Length;
             
@@ -48,8 +45,8 @@ namespace SPZ2MMHookGen
         private void GenerateFor(string pathToDll)
         {
             var fileName = Path.GetFileName(pathToDll);
-            var outputDll = Path.Combine(HookGenPath, "MMHook." + fileName);
-
+            var outputDll = Path.Combine(Directory.GetParent(pathToDll)?.ToString() ?? "", "MMHook." + Path.GetFileName(pathToDll));
+            
             if (File.Exists(outputDll) && File.GetLastWriteTimeUtc(outputDll) == File.GetLastWriteTimeUtc(pathToDll))
             {
                 Console.WriteLine("Skipping HookGen for '" + fileName +
@@ -79,8 +76,10 @@ namespace SPZ2MMHookGen
                 using (var outputModule = hookGenerator.OutputModule)
                 {
                     hookGenerator.Generate();
+                    
+                    monoModder.Log("[HookGen] " + outputModule.Assembly.Name);
                     outputModule.Write(outputDll);
-
+                    
                     monoModder.Log("[HookGen] Done processing " + fileName);
                 }
             }
@@ -94,9 +93,8 @@ namespace SPZ2MMHookGen
             Assembly assembly;
             try
             {
-                var targetDir = assemblyName.Name.StartsWith("MMHook.") ? HookGenPath : DynamicDepsPath;
-                var withDll = Path.Combine(targetDir, assemblyName.Name + ".dll");
-                var withExe = Path.Combine(targetDir, assemblyName.Name + ".exe");
+                var withDll = Path.Combine(DynamicDepsPath, assemblyName.Name + ".dll");
+                var withExe = Path.Combine(DynamicDepsPath, assemblyName.Name + ".exe");
                 assembly = Assembly.LoadFile(File.Exists(withDll) ? withDll : withExe);
             }
             catch (Exception)
