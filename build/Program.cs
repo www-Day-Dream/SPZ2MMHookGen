@@ -95,9 +95,8 @@ public sealed class BuildTask : FrostingTask<BuildContext>
 
         if (context.InstallDir != null)
         {
-            context.Log.Information("Installing to " + context.InstallDir + "/..");
-            
             context.Unzip(outputZip, context.InstallDir, true);
+            context.Log.Information("Installed to " + context.InstallDir + "/..");
         }
     }
 }

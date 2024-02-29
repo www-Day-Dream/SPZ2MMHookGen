@@ -40,6 +40,8 @@ namespace SPZ2MMHookGen
 
             foreach (var assemName in AssembliesToGen)
                 GenerateFor(Path.Combine(spz2ManagedDir, assemName));
+            
+            Environment.SetEnvironmentVariable("MONOMOD_COMPLETE", "1");
         }
 
         private void GenerateFor(string pathToDll)
