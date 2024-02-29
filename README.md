@@ -19,7 +19,7 @@ After you've run the game, with both of the aforementioned directories present, 
 ---
 Once you've got a project setup and references to the generated dlls (and the base games version of those dlls ofc). We can create a mod that hooks existing methods!
 
-The below pseudo-code should skip the starting scenes as a way to test your process (You'll need to use BepInEx.AssemblyPublicizer.MSBuild to publicize the game dll's and you should reference Unity stuff too ofc):
+The below pseudo-code should skip the starting scenes as a way to test your process (You'll need to use BepInEx.AssemblyPublicizer.MSBuild to publicize the game dll's or use System.Reflection to access the below private fields and you should reference Unity stuff too ofc):
 
 **Note**: The way you bind to events `On.X.Y.Z +=` shown below is how you use HookGen to hook the type 'Preloader' that is not namespaced in one of the DLLs. But the patch might not work w/ your version of SPZ2.
 ```csharp
