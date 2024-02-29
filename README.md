@@ -45,3 +45,8 @@ public class Mod : IMod
 #### Build your project
 ---
 Copy only your output dll to your `/tobspr Games/shapez 2/mods/` folder.
+
+## Third-Party Libraries
+[MonoMod](https://github.com/MonoMod/MonoMod)
+
+↳[Mono.Cecil](https://github.com/jbevain/cecil)
