@@ -3,6 +3,8 @@
 
 Implements the `MonoMod.RuntimeDetour.HookGen` as a Shapez 2 built-in `IPatcher`.
 
+Also adds MonoMod/Mono.Cecil/HarmonyX to a dynamically resolved path so you can use them. I recommend referencing those libraries by checking the version under [Third-Party Libraries](#third-party-libraries) and using Nuget to add them as references.
+
 This allows mod developers to create `NET Standard 2.1` or `NET Framework 4.7.1` libraries with a class that implements Shapez 2's `IMod` and perform event based hooks into Shapez 2's `SPZGameAssembly.dll` & `Core.dll`.
 
 
@@ -50,3 +52,5 @@ Copy only your output dll to your `/tobspr Games/shapez 2/mods/` folder.
 [MonoMod](https://github.com/MonoMod/MonoMod) - v22.5.1.1
 
 [Mono.Cecil](https://github.com/jbevain/cecil) - v0.11.4
+
+[HarmonyX](https://github.com/BepInEx/HarmonyX) - v2.10.2

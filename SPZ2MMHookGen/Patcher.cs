@@ -5,11 +5,14 @@ using System.Linq;
 using System.Reflection;
 using Mono.Cecil;
 using MonoMod.RuntimeDetour.HookGen;
+using UnityEngine;
 
 namespace SPZ2MMHookGen
 {
     public class Patcher : IPatcher
     {
+        public class MonoModFlag : MonoBehaviour {}
+        
         private int NumberOfDependencies { get; set; }
         private int NumberResolved { get; set; }
         private string DynamicDepsPath { get; set; }
@@ -40,8 +43,12 @@ namespace SPZ2MMHookGen
 
             foreach (var assemName in AssembliesToGen)
                 GenerateFor(Path.Combine(spz2ManagedDir, assemName));
-            
-            Environment.SetEnvironmentVariable("MONOMOD_COMPLETE", "1");
+
+            Debug.Log("MonoMod Initialized!");
+            var preloaderObject = UnityEngine.Object.FindObjectOfType<Preloader>();
+            if (!preloaderObject) return;
+            preloaderObject.gameObject.AddComponent<MonoModFlag>();
+            preloaderObject.SendMessage("MonoModInitialized");
         }
 
         private void GenerateFor(string pathToDll)

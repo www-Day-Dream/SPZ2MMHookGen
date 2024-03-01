@@ -1,12 +1,21 @@
 <Project Sdk="Microsoft.NET.Sdk">
     <PropertyGroup>
-        <AssemblyVersion>0.1.1</AssemblyVersion>
+        <AssemblyVersion>0.1.2</AssemblyVersion>
         <TargetFramework>net471</TargetFramework>
         <DebugSymbols>False</DebugSymbols>
         <DebugType>None</DebugType>
+        <RestoreAdditionalProjectSources>
+            https://nuget.bepinex.dev/v3/index.json
+        </RestoreAdditionalProjectSources>
     </PropertyGroup>
     
     <ItemGroup>
+        <PackageReference Include="UnityEngine.Modules" Version="2022.3.10" PrivateAssets="All"/>
+        
+        <PackageReference Include="HarmonyX" Version="2.10.2">
+            <IncludeAssets>all;</IncludeAssets>
+            <Publish>true</Publish>
+        </PackageReference>
         <PackageReference Include="MonoMod.Utils" Version="22.5.1.1">
             <IncludeAssets>all;</IncludeAssets>
             <Publish>true</Publish>
@@ -27,12 +36,18 @@
     </ItemGroup>
     
     <ItemGroup>
-      <Content Include="..\Mono.Cecil.LICENSE.txt" CopyToOutputDirectory="Always">
-        <Link>Mono.Cecil.LICENSE.txt</Link>
-      </Content>
-      <Content Include="..\MonoMod.LICENSE.txt" CopyToOutputDirectory="Always">
-        <Link>MonoMod.LICENSE.txt</Link>
-      </Content>
+        <Content Include="..\LICENSE.Mono.Cecil.txt" CopyToOutputDirectory="Always">
+            <Link>LICENSE.Mono.Cecil.txt</Link>
+        </Content>
+        <Content Include="..\LICENSE.MonoMod.txt" CopyToOutputDirectory="Always">
+            <Link>LICENSE.MonoMod.txt</Link>
+        </Content>
+        <Content Include="..\LICENSE.Harmony.txt" CopyToOutputDirectory="Always">
+            <Link>LICENSE.Harmony.txt</Link>
+        </Content>
+        <Content Include="..\LICENSE.HarmonyX.txt" CopyToOutputDirectory="Always">
+            <Link>LICENSE.HarmonyX.txt</Link>
+        </Content>
     </ItemGroup>
     
     <Target Name="PostBuild" AfterTargets="PostBuildEvent">
